@@ -22,7 +22,7 @@ impl Report {
         return Ok(diff * entry)
       }
     }
-    Ok(0)
+    Err(())
   }
 }
 

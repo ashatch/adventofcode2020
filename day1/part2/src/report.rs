@@ -15,26 +15,16 @@ impl Report {
     self.entries.insert(value);
   }
 
-  pub fn prod_sum_2020(&mut self) -> Result<i32, ()> {
-    for entry in self.entries.iter() {
-      let diff = 2020 - entry;
-      if self.entries.contains(&diff) {        
-        return Ok(diff * entry)
-      }
-    }
-    Ok(0)
-  }
-
   pub fn prod_sum3_2020(&mut self) -> Result<i32, ()> {
-    for entry in self.entries.iter() {
-      for entry2 in self.entries.iter() {
-        let diff = 2020 - entry2 - entry;
+    for x in self.entries.iter() {
+      for y in self.entries.iter() {
+        let diff = 2020 - x - y;
         if self.entries.contains(&diff) {        
-          return Ok(diff * entry2 * entry)
+          return Ok(diff * x * y)
         }
       }
     }
-    Ok(0)
+    Err(())
   }
 }
 
