@@ -7,16 +7,14 @@ fn main() -> io::Result<()> {
     let file = File::open("input.txt")?;
     let reader = BufReader::new(file);
 
-    let mut count = 0;
-    for line in reader.lines() {
-        let mut record = validator::PasswordRecord::from_str(&line.unwrap()).unwrap();        
-        if record.is_compliant() {
-            count = count + 1;
-        }
-    }
+    let count = reader.lines()
+        .filter(|line| line.is_ok())
+        .map(|line| validator::PasswordRecord::from_str(&line.unwrap()))
+        .filter_map(|record| record.ok())
+        .filter(|r| r.is_compliant())
+        .count();
 
     println!("{}", count);
-
 
     Ok(())
 }

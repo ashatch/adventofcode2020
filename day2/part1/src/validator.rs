@@ -17,7 +17,7 @@ pub struct PasswordRecord {
 }
 
 impl PasswordRecord {
-  pub fn is_compliant(&mut self) -> bool {
+  pub fn is_compliant(&self) -> bool {
     let char_count = self.password.chars()
       .filter(|x| x.to_string() == self.policy.seq)
       .count() as i32;

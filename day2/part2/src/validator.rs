@@ -17,7 +17,7 @@ pub struct PasswordRecord {
 }
 
 impl PasswordRecord {
-  pub fn is_compliant(&mut self) -> bool {
+  pub fn is_compliant(&self) -> bool {
     let pos1_char = self.password.chars().nth((self.policy.pos1 - 1) as usize).unwrap();
     let pos2_char = self.password.chars().nth((self.policy.pos2 - 1) as usize).unwrap();
 
